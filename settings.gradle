@@ -1,0 +1,2 @@
+rootProject.name = "List Football club"
+include ':app'
