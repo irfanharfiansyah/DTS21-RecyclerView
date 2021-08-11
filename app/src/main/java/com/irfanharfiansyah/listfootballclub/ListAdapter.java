@@ -16,6 +16,11 @@ import java.util.ArrayList;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder>{
     private ArrayList<Club> listClub;
+    private OnItemClickCallback onItemClickCallback;
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
+    }
 
     public  ListAdapter(ArrayList<Club> list) {
         this.listClub = list;
@@ -39,6 +44,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
 //  menetapkan tampilan item berdasarkan tampilan dan model data
         holder.name.setText(club.getName());
         holder.country.setText(club.getCountry());
+
+//    menetapkan tampilan item berdasarkan tampilan dan model data pada detail page
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickCallback.onItemClicked(listClub.get(holder.getAdapterPosition()));
+            }
+        });
     }
 //  Mengembalikan jumlah total item dalam daftar
     @Override
@@ -59,5 +72,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
             name = itemView.findViewById(R.id.name_club);
             country = itemView.findViewById(R.id.country);
         }
+
+    }
+    public interface OnItemClickCallback{
+        void onItemClicked(Club data);
     }
 }
