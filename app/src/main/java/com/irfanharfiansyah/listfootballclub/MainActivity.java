@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvClub;
+    private RecyclerView rvClubDet;
     private ArrayList<Club> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         rvClub.setHasFixedSize(true);
 
         list.addAll(ClubData.getClub());
+
 
 //  Menampilkan list RecyclerView
         rvClub.setLayoutManager(new LinearLayoutManager(this));
@@ -37,5 +39,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
 }
